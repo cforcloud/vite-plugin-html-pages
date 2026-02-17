@@ -1,0 +1,57 @@
+{
+  "name": "vite-plugin-html-pages",
+  "version": "0.0.1",
+  "description": "Vite plugin to support multiple pages with single HTML",
+  "keywords": [
+    "html",
+    "mpa",
+    "vite-plugin"
+  ],
+  "homepage": "https://github.com/cforcloud/vite-plugin-html-pages",
+  "bugs": {
+    "url": "https://github.com/cforcloud/vite-plugin-html-pages/issues"
+  },
+  "license": "MIT",
+  "author": "cforcloud",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cforcloud/vite-plugin-html-pages"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
+  "scripts": {
+    "build": "obuild",
+    "build:stub": "obuild --stub",
+    "dev": "vitest dev",
+    "format": "automd && oxlint . --fix --fix-suggestions && oxfmt .",
+    "lint": "oxlint . && oxfmt --check .",
+    "prepack": "pnpm build",
+    "release": "pnpm test && pnpm build && changelogen --release && npm publish && git push --follow-tags",
+    "test": "pnpm lint && pnpm typecheck && vitest run --coverage",
+    "typecheck": "tsc --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "@vitest/coverage-v8": "^4.0.18",
+    "automd": "^0.4.3",
+    "changelogen": "^0.6.2",
+    "obuild": "^0.4.27",
+    "oxfmt": "^0.32.0",
+    "oxlint": "^1.47.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
+  },
+  "peerDependencies": {
+    "vite": ">=7.0.0"
+  },
+  "packageManager": "pnpm@10.30.0"
+}
