@@ -1,18 +1,18 @@
-/// basic
+/// multi-page
 import "./style.css";
 
-document.querySelector("#app").innerHTML = `
+document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
-    <h1>basic!</h1>
+    <h1>multi-page!</h1>
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
   </div>
 `;
 
-function setupCounter(element) {
+function setupCounter(element: HTMLButtonElement) {
   let counter = 0;
-  const setCounter = (count) => {
+  const setCounter = (count: number) => {
     counter = count;
     element.innerHTML = `count is ${counter}`;
   };
@@ -20,4 +20,4 @@ function setupCounter(element) {
   setCounter(0);
 }
 
-setupCounter(document.querySelector("#counter"));
+setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
