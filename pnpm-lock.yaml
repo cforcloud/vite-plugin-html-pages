@@ -4,40 +4,96 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  cli:
+    automd:
+      specifier: ^0.4.3
+      version: 0.4.3
+    changelogen:
+      specifier: ^0.6.2
+      version: 0.6.2
+    obuild:
+      specifier: ^0.4.31
+      version: 0.4.31
+    oxfmt:
+      specifier: ^0.32.0
+      version: 0.32.0
+    oxlint:
+      specifier: ^1.49.0
+      version: 1.49.0
+    typescript:
+      specifier: ~5.9.3
+      version: 5.9.3
+    vite:
+      specifier: ^7.3.1
+      version: 7.3.1
+  testing:
+    '@vitest/coverage-v8':
+      specifier: 4.0.18
+      version: 4.0.18
+    vitest:
+      specifier: ^4.0.18
+      version: 4.0.18
+  types:
+    '@types/node':
+      specifier: ^25.3.0
+      version: 25.3.0
+
 importers:
 
   .:
     devDependencies:
       '@types/node':
-        specifier: ^25.3.0
+        specifier: catalog:types
         version: 25.3.0
       '@vitest/coverage-v8':
-        specifier: ^4.0.18
+        specifier: catalog:testing
         version: 4.0.18(vitest@4.0.18(@types/node@25.3.0)(jiti@2.6.1))
       automd:
-        specifier: ^0.4.3
+        specifier: catalog:cli
         version: 0.4.3(magicast@0.5.2)
       changelogen:
-        specifier: ^0.6.2
+        specifier: catalog:cli
         version: 0.6.2(magicast@0.5.2)
       obuild:
-        specifier: ^0.4.31
+        specifier: catalog:cli
         version: 0.4.31(chokidar@5.0.0)(dotenv@17.3.1)(giget@2.0.0)(jiti@2.6.1)(magicast@0.5.2)(picomatch@4.0.3)(rollup@4.58.0)(typescript@5.9.3)
       oxfmt:
-        specifier: ^0.32.0
+        specifier: catalog:cli
         version: 0.32.0
       oxlint:
-        specifier: ^1.49.0
+        specifier: catalog:cli
         version: 1.49.0
       typescript:
-        specifier: ~5.9.3
+        specifier: catalog:cli
         version: 5.9.3
       vite:
-        specifier: ^7.3.1
+        specifier: catalog:cli
         version: 7.3.1(@types/node@25.3.0)(jiti@2.6.1)
       vitest:
-        specifier: ^4.0.18
+        specifier: catalog:testing
         version: 4.0.18(@types/node@25.3.0)(jiti@2.6.1)
+
+  playground/basic:
+    devDependencies:
+      vite:
+        specifier: catalog:cli
+        version: 7.3.1(@types/node@25.3.0)(jiti@2.6.1)
+      vite-plugin-html-pages:
+        specifier: workspace:*
+        version: link:../..
+
+  playground/multi-page:
+    devDependencies:
+      typescript:
+        specifier: catalog:cli
+        version: 5.9.3
+      vite:
+        specifier: catalog:cli
+        version: 7.3.1(@types/node@25.3.0)(jiti@2.6.1)
+      vite-plugin-html-pages:
+        specifier: workspace:*
+        version: link:../..
 
 packages:
 
