@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { test } from "../src/index.ts";
+import { PLUGIN_NAME, viteHtmlPages } from "../src/index.ts";
 
 describe("vite-plugin-html-pages", () => {
-  it("pass", () => {
-    expect(test()).toBe("works!");
+  it("plugin name", () => {
+    expect(PLUGIN_NAME).toBe("vite-plugin-html-pages");
+  });
+
+  it("returns plugin array", () => {
+    expect(viteHtmlPages()).toHaveLength(1);
   });
 });
