@@ -39,16 +39,16 @@
     "check": "pnpm fmt && pnpm test && pnpm build"
   },
   "devDependencies": {
-    "@types/node": "^25.3.0",
-    "@vitest/coverage-v8": "^4.0.18",
-    "automd": "^0.4.3",
-    "changelogen": "^0.6.2",
-    "obuild": "^0.4.31",
-    "oxfmt": "^0.32.0",
-    "oxlint": "^1.49.0",
-    "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.18"
+    "@types/node": "catalog:types",
+    "@vitest/coverage-v8": "catalog:testing",
+    "automd": "catalog:cli",
+    "changelogen": "catalog:cli",
+    "obuild": "catalog:cli",
+    "oxfmt": "catalog:cli",
+    "oxlint": "catalog:cli",
+    "typescript": "catalog:cli",
+    "vite": "catalog:cli",
+    "vitest": "catalog:testing"
   },
   "peerDependencies": {
     "vite": "^5 || ^6 || ^7"

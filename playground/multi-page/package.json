@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "~5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-html-pages": "link:../.."
+    "typescript": "catalog:cli",
+    "vite": "catalog:cli",
+    "vite-plugin-html-pages": "workspace:*"
   }
 }
