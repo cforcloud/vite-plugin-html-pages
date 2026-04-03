@@ -29,14 +29,17 @@
   "scripts": {
     "build": "pnpm typecheck && obuild",
     "build:stub": "obuild --stub",
-    "dev": "vitest dev",
+    "dev:basic": "pnpm --filter ./playground/basic run dev",
+    "dev:multi": "pnpm --filter ./playground/multi-page run dev",
+    "dev:build": "pnpm --filter 'playground-*' run build",
     "fmt": "automd && oxlint . --fix --fix-suggestions && oxfmt .",
-    "lint": "oxlint . && oxfmt --check .",
+    "lint": "oxlint . && oxfmt .",
     "prepack": "pnpm build",
     "release": "pnpm test && pnpm build && changelogen --release && npm publish && git push --follow-tags",
+    "test:dev": "vitest --reporter=tree",
     "test": "pnpm lint && pnpm typecheck && vitest run --coverage",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "check": "pnpm fmt && pnpm test && pnpm build"
+    "ready": "pnpm lint && pnpm fmt && pnpm build:stub && pnpm build && pnpm dev:build && pnpm test"
   },
   "devDependencies": {
     "@types/node": "catalog:types",
@@ -51,7 +54,10 @@
     "vitest": "catalog:testing"
   },
   "peerDependencies": {
-    "vite": "^5 || ^6 || ^7"
+    "vite": ">=5"
   },
-  "packageManager": "pnpm@10.30.0"
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
