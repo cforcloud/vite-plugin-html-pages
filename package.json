@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-html-page",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vite plugin to support multiple pages with single HTML",
   "keywords": [
     "html",
