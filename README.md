@@ -1,7 +1,5 @@
 # vite-plugin-html-page
 
-Vite plugin to support multiple pages with single HTML file and EJS
-
 <!-- automd:badges color=yellow -->
 
 [![npm version](https://img.shields.io/npm/v/vite-plugin-html-page?color=yellow)](https://npmjs.com/package/vite-plugin-html-page)
@@ -9,16 +7,74 @@ Vite plugin to support multiple pages with single HTML file and EJS
 
 <!-- /automd -->
 
-## Usage
+Vite plugin to support multiple HTML pages using a single HTML template file and inject page specific HTML tags (e.g., meta, link, script) based on configured page paths.
 
-Install the package:
+## Features
+
+- `SPA` and `MPA` modes support
+- Uses root `index.html` file by default
+- Support custom default template
+
+
+## Install
+node version: >=20.0.0
+
+vite version: >=5.0.0
 
 ```sh
 # npm
 npm install vite-plugin-html-page
+```
 
-# for all runtimes npm, yarn, pnpm, bun and deno
-npx nypm install vite-plugin-html-page
+
+## Single page usage
+```ts
+/// vite.config.ts
+import { defineConfig } from "vite";
+import { viteHtmlPage } from "vite-plugin-html-page";
+
+export default defineConfig({
+  plugins: [
+    viteHtmlPage(),
+  ],
+});
+```
+
+## Multi page usage
+```ts
+/// vite.config.ts
+import { defineConfig } from "vite";
+import { viteHtmlPage } from "vite-plugin-html-page";
+
+export default defineConfig({
+  plugins: [
+    viteHtmlPage({
+      pages: [
+        {
+          path: "/",
+          filename: "index.html",
+        },
+
+        {
+          path: "/about",
+          filename: "about/index.html",
+          tags: [
+            {
+              tag: "meta",
+              attrs: { name: "description", content: "tells about us" },
+            },
+            {
+              tag: "p",
+              attrs: { class: "inject" },
+              children: "This is injected in About",
+              injectTo: "body",
+            },
+          ],
+        },
+      ],
+    }),
+  ]
+});
 ```
 
 ## Development
