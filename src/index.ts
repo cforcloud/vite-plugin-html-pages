@@ -30,6 +30,7 @@ type HtmlBaseOptions = {
 };
 
 export type HtmlPageOptions = HtmlBaseOptions & {
+  /** array of pages */
   pages?: HtmlPage[];
 };
 
@@ -40,14 +41,31 @@ export const PLUGIN_NAME = "vite-plugin-html-page";
 
 /**
  * Vite plugin to support multiple pages with single HTML
- * @param options
- * @returns Plugin
+ * @param options - Configuration options
+ * @param options.pages - array of pages
+ * @param options.cacheParentDir - parent directory of `cacheDir`
+ * @param options.cacheDir - place where temp html files are cached
+ * @param options.defaultTemplate - default html file name
+ * @returns Vite Plugin
+ *
+ * @example
+ * ```js
+ * /// vite.config.ts
+ * import { defineConfig } from "vite";
+ * import { viteHtmlPage } from "vite-plugin-html-page";
+ * export default defineConfig({
+ *   plugins: [viteHtmlPage()],
+ * });
+ * ```
+ * 
+ * @see https://github.com/cforcloud/vite-plugin-html-page
  */
 export function viteHtmlPage(options: HtmlPageOptions = {}): Plugin[] {
   const {
     cacheParentDir = "node_modules",
     cacheDir = ".html-page",
     defaultTemplate = "index.html",
+    pages,
   } = options;
   let viteConfig: ResolvedConfig | undefined;
 
@@ -56,8 +74,8 @@ export function viteHtmlPage(options: HtmlPageOptions = {}): Plugin[] {
   const cacheDirname = nodePath.resolve(cwd, cacheParentDir, cacheDir);
 
   /// sort long to short path
-  const pageItems = options.pages?.length
-    ? [...options.pages]
+  const pageItems = pages?.length
+    ? [...pages]
         .sort((a, b) => b.path.localeCompare(a.path))
         .map((pageItem) => {
           const { filename } = pageItem;
