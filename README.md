@@ -15,8 +15,8 @@ Vite plugin to support multiple HTML pages using a single HTML template file and
 - Uses root `index.html` file by default
 - Support custom default template
 
-
 ## Install
+
 node version: >=20.0.0
 
 vite version: >=5.0.0
@@ -26,21 +26,20 @@ vite version: >=5.0.0
 npm install vite-plugin-html-page
 ```
 
-
 ## Single page usage
+
 ```ts
 /// vite.config.ts
 import { defineConfig } from "vite";
 import { viteHtmlPage } from "vite-plugin-html-page";
 
 export default defineConfig({
-  plugins: [
-    viteHtmlPage(),
-  ],
+  plugins: [viteHtmlPage()],
 });
 ```
 
 ## Multi page usage
+
 ```ts
 /// vite.config.ts
 import { defineConfig } from "vite";
@@ -73,7 +72,7 @@ export default defineConfig({
         },
       ],
     }),
-  ]
+  ],
 });
 ```
 
