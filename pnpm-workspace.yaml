@@ -16,7 +16,7 @@ catalogs:
     "@vitest/coverage-v8": ^4.1.2
     vitest: ^4.1.2
   types:
-    "@types/node": ^25.5.0
+    "@types/node": ^25.5.2
 
 shellEmulator: true
 

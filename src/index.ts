@@ -1,4 +1,4 @@
-/// vite-plugin-html-pages
+/// vite-plugin-html-page
 import nodePath from "node:path";
 import fsPromises from "node:fs/promises";
 
@@ -22,31 +22,31 @@ type HtmlBaseOptions = {
   /** @default 'node_modules' */
   cacheParentDir?: string;
 
-  /** where temp html files are placed @default '.html-pages' */
+  /** where temp html files are placed @default '.html-page' */
   cacheDir?: string;
 
   /** default html file name @default index.html */
   defaultTemplate?: string;
 };
 
-export type HtmlPagesOptions = HtmlBaseOptions & {
+export type HtmlPageOptions = HtmlBaseOptions & {
   pages?: HtmlPage[];
 };
 
 type HtmlPageItem = HtmlPage & { cacheFilename: string };
 
 /// constants
-export const PLUGIN_NAME = "vite-plugin-html-pages";
+export const PLUGIN_NAME = "vite-plugin-html-page";
 
 /**
  * Vite plugin to support multiple pages with single HTML
  * @param options
  * @returns Plugin
  */
-export function viteHtmlPages(options: HtmlPagesOptions = {}): Plugin[] {
+export function viteHtmlPage(options: HtmlPageOptions = {}): Plugin[] {
   const {
     cacheParentDir = "node_modules",
-    cacheDir = ".html-pages",
+    cacheDir = ".html-page",
     defaultTemplate = "index.html",
   } = options;
   let viteConfig: ResolvedConfig | undefined;

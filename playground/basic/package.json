@@ -9,6 +9,6 @@
   },
   "devDependencies": {
     "vite": "catalog:cli",
-    "vite-plugin-html-pages": "workspace:*"
+    "vite-plugin-html-page": "workspace:*"
   }
 }

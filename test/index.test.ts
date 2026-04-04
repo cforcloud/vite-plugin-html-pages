@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import type { IndexHtmlTransformContext, IndexHtmlTransformHook, UserConfig } from "vite";
 import { describe, expect, it } from "vitest";
 
-import { PLUGIN_NAME, viteHtmlPages } from "../src/index.ts";
+import { PLUGIN_NAME, viteHtmlPage } from "../src/index.ts";
 import type { HtmlPage } from "../src/index.ts";
 
 const mockPages: HtmlPage[] = [
@@ -27,9 +27,9 @@ const mockPages: HtmlPage[] = [
 
 const mockHtml = "<body>mock</body>";
 
-describe("vite-plugin-html-pages", () => {
+describe("vite-plugin-html-page", () => {
   it("returns serve and build plugins array", () => {
-    const pluginInstance = viteHtmlPages();
+    const pluginInstance = viteHtmlPage();
 
     expect(pluginInstance).toHaveLength(2);
 
@@ -41,7 +41,7 @@ describe("vite-plugin-html-pages", () => {
 
   describe("serve plugin", () => {
     it("runs transform index html", async () => {
-      const pluginInstance = viteHtmlPages();
+      const pluginInstance = viteHtmlPage();
       const servePlugin = pluginInstance.find((a) => a.apply === "serve");
 
       const mockCtx: IndexHtmlTransformContext = {
@@ -61,7 +61,7 @@ describe("vite-plugin-html-pages", () => {
     });
 
     it("runs transform index html with pages", async () => {
-      const pluginInstance = viteHtmlPages({ pages: mockPages });
+      const pluginInstance = viteHtmlPage({ pages: mockPages });
       const servePlugin = pluginInstance.find((a) => a.apply === "serve");
 
       const root = process.cwd();
@@ -70,7 +70,7 @@ describe("vite-plugin-html-pages", () => {
       mockPagesWithUnknown.forEach(async (page) => {
         const mockCtx: IndexHtmlTransformContext = {
           path: page.path,
-          filename: nodePath.resolve(root, "node_modules/.html-pages", page.filename),
+          filename: nodePath.resolve(root, "node_modules/.html-page", page.filename),
           originalUrl: `${page.path}?a=1`,
         };
 
@@ -93,7 +93,7 @@ describe("vite-plugin-html-pages", () => {
 
   describe("build plugin", () => {
     it("runs config", async () => {
-      const pluginInstance = viteHtmlPages();
+      const pluginInstance = viteHtmlPage();
       const buildPlugin = pluginInstance.find((a) => a.apply === "build");
 
       /// mock a vite config
@@ -108,7 +108,7 @@ describe("vite-plugin-html-pages", () => {
     it("runs with pages and cacheDir", async () => {
       const cacheParentDir = "dist";
       const cacheDir = ".htmls";
-      const pluginInstance = viteHtmlPages({
+      const pluginInstance = viteHtmlPage({
         cacheParentDir,
         cacheDir,
         pages: mockPages,
@@ -133,13 +133,13 @@ describe("vite-plugin-html-pages", () => {
     });
 
     it("runs transform index html", async () => {
-      const pluginInstance = viteHtmlPages({ pages: mockPages });
+      const pluginInstance = viteHtmlPage({ pages: mockPages });
       const buildPlugin = pluginInstance.find((a) => a.apply === "build");
 
       const root = process.cwd();
       const mockCtx: IndexHtmlTransformContext = {
         path: "/index.html",
-        filename: nodePath.resolve(root, "node_modules/.html-pages", "about/index.html"),
+        filename: nodePath.resolve(root, "node_modules/.html-page", "about/index.html"),
         originalUrl: "/about?a=1",
       };
 
@@ -160,7 +160,7 @@ describe("vite-plugin-html-pages", () => {
     });
 
     it("runs configResolved", async () => {
-      const pluginInstance = viteHtmlPages({ pages: mockPages });
+      const pluginInstance = viteHtmlPage({ pages: mockPages });
       const buildPlugin = pluginInstance.find((a) => a.apply === "build");
 
       // @ts-expect-error configResolved callable
@@ -170,7 +170,7 @@ describe("vite-plugin-html-pages", () => {
     });
 
     it("runs closeBundle", async () => {
-      const pluginInstance = viteHtmlPages({ pages: mockPages });
+      const pluginInstance = viteHtmlPage({ pages: mockPages });
       const buildPlugin = pluginInstance.find((a) => a.apply === "build");
 
       // await buildPlugin?.configResolved?.(defineConfig({}));
