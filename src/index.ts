@@ -57,7 +57,7 @@ export const PLUGIN_NAME = "vite-plugin-html-page";
  *   plugins: [viteHtmlPage()],
  * });
  * ```
- * 
+ *
  * @see https://github.com/cforcloud/vite-plugin-html-page
  */
 export function viteHtmlPage(options: HtmlPageOptions = {}): Plugin[] {
