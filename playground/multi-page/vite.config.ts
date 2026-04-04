@@ -1,12 +1,12 @@
 /// multi-page
 import { defineConfig } from "vite";
 
-import { viteHtmlPages } from "vite-plugin-html-pages";
-// import { viteHtmlPages } from "../../src/index.ts";
+import { viteHtmlPage } from "vite-plugin-html-page";
+// import { viteHtmlPage } from "../../src/index.ts";
 
 export default defineConfig({
   plugins: [
-    viteHtmlPages({
+    viteHtmlPage({
       pages: [
         {
           path: "/",

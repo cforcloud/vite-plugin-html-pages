@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
-import { viteHtmlPages } from "vite-plugin-html-pages";
+import { viteHtmlPage } from "vite-plugin-html-page";
 
 export default defineConfig({
-  plugins: [viteHtmlPages()],
+  plugins: [viteHtmlPage()],
 });

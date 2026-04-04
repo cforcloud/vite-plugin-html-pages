@@ -10,6 +10,6 @@
   "devDependencies": {
     "typescript": "catalog:cli",
     "vite": "catalog:cli",
-    "vite-plugin-html-pages": "workspace:*"
+    "vite-plugin-html-page": "workspace:*"
   }
 }
